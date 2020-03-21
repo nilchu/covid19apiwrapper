@@ -28,7 +28,6 @@ export default class Covid19Api {
     
     constructor( options?: object ) {
         Covid19Api.initCountryArray();
-        console.log(Covid19Api.countryArray);
     }
 
     /**
@@ -46,6 +45,9 @@ export default class Covid19Api {
      }
 
      private static checkLastApiCall(currentTimestamp: number = Date.now()) : boolean {
+        /**
+         * TODO: Implement check for caching
+         */
         return true;
      }
 

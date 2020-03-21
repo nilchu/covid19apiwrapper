@@ -1,6 +1,6 @@
 {
   "name": "covid19apiwrapper",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Wrapper for the covid19api (https://api.covid19api.com/) by Kyle Redelinghuys",
   "author": "nilchu",
   "main": "index.js",
