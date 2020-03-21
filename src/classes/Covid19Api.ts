@@ -1,4 +1,4 @@
-import axios, { AxiosPromise } from 'axios';
+import axios, { AxiosPromise, AxiosStatic } from 'axios';
 
 enum Status {
     confirmed,
@@ -6,9 +6,14 @@ enum Status {
     recovered
 }
 
-interface ParamsObj {
+interface Country {
     country: string,
-    status: Status;
+    slug: string
+}
+
+interface ParamsObj {
+    country: Country,
+    status?: Status;
 }
 
 export default class Covid19Api {
@@ -34,7 +39,7 @@ export default class Covid19Api {
     /**
      * public Methods
      */
-    public static async getCountries() : Promise<void> {
+    public static async getCountries() : Promise<object | undefined> {
         try {
             return await axios.get(this.baseUrl + '/countries');
         } catch (error) {
@@ -42,7 +47,7 @@ export default class Covid19Api {
         }
     }
 
-    public static async getSummery() : Promise<void> {
+    public static async getSummery() : Promise<object | undefined> {
         try {
             return await axios.get(this.baseUrl + '/summary');
         } catch (error) {
@@ -50,7 +55,7 @@ export default class Covid19Api {
         }
     }
 
-    public static async getAll(): Promise<void> {
+    public static async getAll(): Promise<object | undefined> {
         try {
             return await axios.get(this.baseUrl + '/all');
         } catch (error) {
@@ -58,34 +63,37 @@ export default class Covid19Api {
         }
     }
 
-    public static async getCasesForCountryWithCaseType( params: ParamsObj ) : Promise<void> {
+    public static async getCasesForCountryWithCaseType( params: ParamsObj ) : Promise<object | undefined> {
         const { country, status } = params;
         try {
-            return await axios.get(this.baseUrl + '/countries/' + country + '/status/' + status);
+            return await axios.get(this.baseUrl + '/country/' + country.slug + '/status/' + status);
         } catch (error) {
             console.error(error.message);
         }
     }
 
-    public static async getCasesForCountryWithCaseTypeTotal( params: ParamsObj ) : Promise<void> {
+    public static async getCasesForCountryWithCaseTypeTotal( params: ParamsObj ) : Promise<object | undefined> {
+        const { country, status } = params;
         try {
-
+            return await axios.get(this.baseUrl + '/total/country/' + country.slug + '/status/' + status);
         } catch (error) {
-            
+            console.error(error.message);
         }
     }
 
-    public static async getCasesForCountryWithCaseTypeDayOne( params: ParamsObj ) : Promise<void> {
+    public static async getCasesForCountryWithCaseTypeDayOne( params: ParamsObj ) : Promise<object | undefined> {
+        const { country, status } = params;
         try {
-
+            return axios.get(this.baseUrl + '/dayone/country/' + country.slug + '/status/' + status);
         } catch (error) {
-            
+            console.error(error.message)
         }
     }
 
     public static async getCasesForCountryWithCaseTypeFirstRecordedCase( params: ParamsObj) : Promise<void>{
+        const { country, status } = params;
         try {
-
+            return axios.get(this.baseUrl + '/total/dayone/country/' + country.slug + '/status/' + status);
         } catch (error) {
             
         }
