@@ -1,4 +1,5 @@
 import axios, { AxiosPromise, AxiosStatic } from 'axios';
+import * as countries from '../../countries.json';
 
 enum Status {
     confirmed,
@@ -23,14 +24,26 @@ export default class Covid19Api {
     private static cache: object = {
 
     }
+    private static countryArray: Array<Country>;
     
     constructor( options?: object ) {
-
+        Covid19Api.initCountryArray();
+        console.log(Covid19Api.countryArray);
     }
 
     /**
      * private Methods
      */
+
+     private static initCountryArray(): void {
+        for(let i in countries) {
+            this.countryArray.push(
+            { 
+                country: countries[i].Country,
+                slug: countries[i].Slug
+            })
+        }
+     }
 
      private static checkLastApiCall(currentTimestamp: number = Date.now()) : boolean {
         return true;
