@@ -1,0 +1,31 @@
+{
+  "name": "covid19apiwrapper",
+  "version": "1.0.0",
+  "description": "Wrapper for the covid19api (https://api.covid19api.com/) by Kyle Redelinghuys",
+  "author": "nilchu",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "webpack -p",
+    "start": "webpack && node ./dist/index.js",
+    "debug": "wepack && node --inspect ./dist/index.js",
+    "dev": "nodemon -e js,ts  --ignore dist/ --ignore node-modules/ --exec npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "covid19",
+    "wrapper"
+  ],
+  "devDependencies": {
+    "file-loader": "^6.0.0",
+    "node-loader": "^0.6.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
