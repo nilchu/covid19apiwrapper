@@ -1,24 +1,10 @@
-class Covid19Api {
-   
-    static baseURL: string = 'https://api.covid19api.com';
-    
-    /**
-     * Methods
-     */
-    static async getCountries() {
+import Covid19Api from './classes/Covid19Api';
 
-    }
 
-    static async getSummery() {
-
-    }
-
-    static async getAll() {
-
-    }
-
-    static async getCasesForCountryWithStatus( params: object ) {
-
-    }
+async function main() {
+    const c = await Covid19Api.getCountries()
+    console.log(c.data);
 
 }
+
+main();
