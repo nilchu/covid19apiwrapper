@@ -1,11 +1,6 @@
 import axios, { AxiosPromise, AxiosStatic } from 'axios';
+import { CountryEnum, StatusEnum } from '../constants/enums';
 import * as countries from '../../countries.json';
-
-enum Status {
-    confirmed,
-    deaths,
-    recovered
-}
 
 interface Country {
     country: string,
@@ -13,8 +8,8 @@ interface Country {
 }
 
 interface ParamsObj {
-    country: Country,
-    status?: Status;
+    country: CountryEnum,
+    status?: StatusEnum;
 }
 
 export default class Covid19Api {
@@ -102,7 +97,7 @@ export default class Covid19Api {
     public static async getCasesForCountryWithCaseType( params: ParamsObj ) : Promise<object | undefined> {
         const { country, status } = params;
         try {
-            return await axios.get(this.baseUrl + '/country/' + country.slug + '/status/' + status);
+            return await axios.get(this.baseUrl + '/country/' + country + '/status/' + status);
         } catch (error) {
             console.error(error.message);
         }
@@ -111,7 +106,7 @@ export default class Covid19Api {
     public static async getCasesForCountryWithCaseTypeTotal( params: ParamsObj ) : Promise<object | undefined> {
         const { country, status } = params;
         try {
-            return await axios.get(this.baseUrl + '/total/country/' + country.slug + '/status/' + status);
+            return await axios.get(this.baseUrl + '/total/country/' + country + '/status/' + status);
         } catch (error) {
             console.error(error.message);
         }
@@ -120,7 +115,7 @@ export default class Covid19Api {
     public static async getCasesForCountryWithCaseTypeDayOne( params: ParamsObj ) : Promise<object | undefined> {
         const { country, status } = params;
         try {
-            return axios.get(this.baseUrl + '/dayone/country/' + country.slug + '/status/' + status);
+            return axios.get(this.baseUrl + '/dayone/country/' + country + '/status/' + status);
         } catch (error) {
             console.error(error.message)
         }
@@ -129,7 +124,7 @@ export default class Covid19Api {
     public static async getCasesForCountryWithCaseTypeFirstRecordedCase( params: ParamsObj) : Promise<void>{
         const { country, status } = params;
         try {
-            return axios.get(this.baseUrl + '/total/dayone/country/' + country.slug + '/status/' + status);
+            return axios.get(this.baseUrl + '/total/dayone/country/' + country + '/status/' + status);
         } catch (error) {
             
         }
