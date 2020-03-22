@@ -156,4 +156,38 @@ export default class Covid19Api {
          return numberTotalCases.TotalConfirmed;
      }
 
+     public static async getNewDeathsWorldwide(): Promise<number> {
+         const response = await this.getSummary();
+         const countryStats: Array<any> = response.data.Countries;
+         const numberNewDeaths: any = countryStats.reduce((prev: any, curr: any) => { return { NewDeaths: prev.NewDeaths + curr.NewDeaths }});
+
+         return numberNewDeaths.NewDeaths;
+     }
+
+     public static async getTotalDeathsWorldwide(): Promise<number> {
+        const response = await this.getSummary();
+        const countryStats: Array<any> = response.data.Countries;
+        const numberTotalDeaths: any = countryStats.reduce((prev: any, curr: any) => { return { TotalDeaths: prev.TotalDeaths + curr.TotalDeaths }});
+
+        return numberTotalDeaths.TotalDeaths;
+    }
+
+    public static async getNewRecoveredWorldwide(): Promise<number> {
+        const response = await this.getSummary();
+        const countryStats: Array<any> = response.data.Countries;
+        const numberNewRecovered: any = countryStats.reduce((prev: any, curr: any) => { return { NewRecovered: prev.NewRecovered + curr.NewRecovered }})
+
+        return numberNewRecovered.NewRecovered;
+    }
+
+    public static async getTotalRecoveredWorldWide(): Promise<number> {
+        const response = await this.getSummary();
+        const countryStats: Array<any> = response.data.Countries;
+        const numberTotalRecovered: any = countryStats.reduce((prev: any, curr: any) => { return { TotalRecovered: prev.TotalRecovered + curr.TotalRecovered }})
+
+        return numberTotalRecovered.TotalRecovered;
+    }
+
+
+
 }
