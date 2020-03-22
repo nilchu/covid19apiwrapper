@@ -20,7 +20,7 @@ interface ParamsObj {
 export default class Covid19Api {
    
     private static baseUrl: string = 'https://api.covid19api.com';
-    private static lastApiCallTimestamp: Number;
+    private static lastApiCallTimestamp: number;
     private static cache: object = {
         
     }
