@@ -28,8 +28,7 @@ export default class Covid19Api {
     private static _cachingActive: boolean;
     private static countryArray: Array<Country>;
     
-    constructor( options?: object ) {
-        Covid19Api.initCountryArray();
+    private constructor( options?: object ) {
     }
 
     /**
