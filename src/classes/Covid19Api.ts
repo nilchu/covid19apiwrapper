@@ -95,36 +95,32 @@ export default class Covid19Api {
     }
 
     public static async getCasesForCountryWithCaseType( params: ParamsObj ) : Promise<object | undefined> {
-        const { country, status } = params;
         try {
-            return await axios.get(this.baseUrl + '/country/' + country + '/status/' + status);
+            return await axios.get(this.baseUrl + '/country/' + params.country + '/status/' + params.status);
         } catch (error) {
             console.error(error.message);
         }
     }
 
     public static async getCasesForCountryWithCaseTypeTotal( params: ParamsObj ) : Promise<object | undefined> {
-        const { country, status } = params;
         try {
-            return await axios.get(this.baseUrl + '/total/country/' + country + '/status/' + status);
+            return await axios.get(this.baseUrl + '/total/country/' + params.country + '/status/' + params.status);
         } catch (error) {
             console.error(error.message);
         }
     }
 
     public static async getCasesForCountryWithCaseTypeDayOne( params: ParamsObj ) : Promise<object | undefined> {
-        const { country, status } = params;
         try {
-            return axios.get(this.baseUrl + '/dayone/country/' + country + '/status/' + status);
+            return axios.get(this.baseUrl + '/dayone/country/' + params.country + '/status/' + params.status);
         } catch (error) {
             console.error(error.message)
         }
     }
 
     public static async getCasesForCountryWithCaseTypeFirstRecordedCase( params: ParamsObj) : Promise<void>{
-        const { country, status } = params;
         try {
-            return axios.get(this.baseUrl + '/total/dayone/country/' + country + '/status/' + status);
+            return axios.get(this.baseUrl + '/total/dayone/country/' + params.country + '/status/' + params.status);
         } catch (error) {
             
         }

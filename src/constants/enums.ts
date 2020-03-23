@@ -1,7 +1,7 @@
 export enum StatusEnum {
-    confirmed,
-    deaths,
-    recovered
+    CONFIRMED = "confirmed",
+    DEATHS = "deaths",
+    RECOVERED = "recovered"
 }
 
 export enum CountryEnum {
